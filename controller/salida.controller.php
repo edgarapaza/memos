@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require "../models/ValidarUsuario.php";
+require_once "../models/ValidarUsuario.php";
 $tipo = "Entrada";
 
 $validar = new ValidarUsuario();

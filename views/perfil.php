@@ -4,9 +4,12 @@ $idproyecto = $_REQUEST['idproyecto'];
 require "../models/listas.model.php";
 $listas = new Listas();
 $data = $listas->ListaPerfil();
+
+
 ?>
 
-  <main id="main" class="main">
+
+  <main id="main" class="main" onload="Imprimir()">
 
     <div class="pagetitle">
       <h1>Data Tables</h1>
@@ -25,7 +28,7 @@ $data = $listas->ListaPerfil();
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">eSCOJA UNA OPCION</h5>
+              <h5 class="card-title">ESCOJA UNA OPCION</h5>
 
               <input type="text" value="<?php echo $idproyecto; ?>">
 
@@ -47,9 +50,19 @@ $data = $listas->ListaPerfil();
                     <tr>
                       <td scope="row"><?php echo $i; ?></td>
                       <td><?php  echo $fila['descripcion'];?></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>
+                        
+
+                        <select name="idpersonal">
+                          <option value="">Seleccionar</option>
+                          
+                          <option value="<?php echo $fila['idpersonal']; ?>">
+                            <?php echo $fila['nombre'].'-('.$fila['cargo'].')';?>
+                          </option>
+                         
+                        </select>
+
+                      </td>
                       <td>
                       <a href="#?idproyecto=<?php echo $fila['idpip']; ?>">Memos>></a>
                       </td>
@@ -71,3 +84,11 @@ $data = $listas->ListaPerfil();
   </main><!-- End #main -->
 
   <?php include_once("footer.php"); ?>
+
+  <script type="text/javascript">
+    function Imprimir()
+    {
+      let caja = document.getElementById("print");
+      caja.value = "algo";
+    }
+  </script>

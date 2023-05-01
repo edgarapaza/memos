@@ -1,5 +1,5 @@
 <?php //Modulo C
-require("../models/reportes.model.php");
+require_once ("../models/reportes.model.php");
 
 $idpersonal = $_POST['idpersonal'];
 $idfunciones = $_POST['idfunciones'];

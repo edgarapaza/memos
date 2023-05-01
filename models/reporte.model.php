@@ -1,6 +1,7 @@
 <?php
+require_once "Conexion.php";
 
-	class Reporte
+class Reporte
 	{
 		private $mysqli;
 

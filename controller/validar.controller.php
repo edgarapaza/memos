@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../models/validar.model.php";
+require_once "../models/validar.model.php";
 
 $validar = new Validar();
 

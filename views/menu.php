@@ -24,7 +24,7 @@ $idproyecto = $_REQUEST['idproyecto'];
             <div class="card-body">
               <h5 class="card-title">ESCOJA UNA OPCION</h5>
 
-              <input type="text" value="">
+              <input type="text" value="<?php echo $idproyecto; ?>">
               <br>
               <a href="perfil.php?idproyecto=<?php echo $idproyecto; ?>" class="btn btn-success">PERFIL</a>
               <br>

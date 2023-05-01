@@ -1,5 +1,6 @@
 <?php
-require "Conexion.php";
+require_once "Conexion.php";
+
 class Listas
 {
 	private $conn;
@@ -19,7 +20,14 @@ class Listas
 
 	function ListaPerfil()
 	{
-		$sql="SELECT idpip, descripcion FROM indice_pip;";
+		$sql="SELECT p.idpip, p.descripcion, v.idpersonal, v.nombre, v.cargo FROM indice_pip AS p, view_personal AS v;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
+
+	function ListaPersonal()
+	{
+		$sql="SELECT idpersonal, nombre, cargo FROM view_personal;";
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}
