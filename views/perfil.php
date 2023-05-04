@@ -34,7 +34,7 @@ $numtotal = $data->num_rows;
 			  <input type="hidden" id="idproyecto" name="idproyecto" value="<?php echo $idproyecto; ?>">
 			  <input type="hidden" id="numtotal" name="numtotal" value="<?php echo $numtotal; ?>">
 
-				<table class="table datatable">
+				<table class="table">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
@@ -50,7 +50,7 @@ $numtotal = $data->num_rows;
 
 						while ($fila = $data->fetch_array(MYSQLI_ASSOC)) {
 						?>
-						<tr>
+						<tr id="<?php echo $i;?>" data-pip="<?php echo $fila['idpip']; ?>" data-personal="<?php echo $_SESSION['personal'];?>" >
 							<td scope="row"><?php echo $i; ?></td>
 							<td><?php  echo $fila['descripcion'];?></td>
 							<td>
@@ -99,7 +99,26 @@ $numtotal = $data->num_rows;
 		});
 
 		$(document).on('change', '#idpersonal', function(event) {
+			
 		    $('#servicioSelecionado').val($("#idpersonal option:selected").val());
+			var uno = $("#idpersonal option:selected").val();
+			alert(uno);
+		});
+
+		
+
+
+		// cuando se pulsa un enlace con data-id
+		$("tr").on("click", function() {
+			// guardar el valor del data-id en el localstorage
+			//var idpersonal = document.getElementById("idpersonal");
+			//var webcard = document.getElementById("2");
+			// En la propiedad dataset del elemento estarán todos los atributos data-*
+			//var strWeb = webcard.dataset.pip; //Resultado: Estrada Web Group
+			//var strPer = webcard.dataset.personal; //Resultado: Estrada Web Group
+						
+			alert("data-index: ");
+			//localStorage.setItem("data-id", $(this).attr("data-id"));
 		});
 	});
   </script>
