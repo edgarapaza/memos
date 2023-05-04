@@ -20,7 +20,7 @@ class Listas
 
 	function ListaPerfil()
 	{
-		$sql="SELECT p.idpip, p.descripcion, v.idpersonal, v.nombre, v.cargo FROM indice_pip AS p, view_personal AS v;";
+		$sql="SELECT idpip, descripcion FROM indice_pip;";
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}
