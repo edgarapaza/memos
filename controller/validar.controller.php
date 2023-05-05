@@ -9,17 +9,25 @@ $pass = $_REQUEST['txtpassword'];
 
 $data = $validar->Verificar($user, $pass);
 
-if($data['activo'] == 1)
+if(!is_null($data))
 {
-	if($data['nivel'] == 1)
+	echo "lleno";
+	if($data['activo'] == 1)
 	{
-		$_SESSION['personal'] = $data['idpersonal'];
-		header("Location: ../views/index.php");
+		if($data['nivel'] == 1)
+		{
+			$_SESSION['personal'] = $data['idpersonal'];
+			header("Location: ../views/index.php");
+		}else{
+			//echo "NO activo";
+			header("Location: ../index.html");
+		}
 	}else{
-		//echo "NO activo";
+		echo "No activo";
 		header("Location: ../index.html");
 	}
 }else{
-	echo "No activo";
+	echo "vacio";
+	header("Location: ../index.html");
 }
 ?>

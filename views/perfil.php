@@ -25,8 +25,6 @@ $numtotal = $data->num_rows;
 	  <div class="row">
 		<div class="col-lg-12">
 
-
-
 		  <div class="card">
 			<div class="card-body">
 			  <h5 class="card-title">ESCOJA UNA OPCION</h5>
@@ -48,7 +46,8 @@ $numtotal = $data->num_rows;
 						<?php
 						$i = 1;
 
-						while ($fila = $data->fetch_array(MYSQLI_ASSOC)) {
+						while ($fila = $data->fetch_array(MYSQLI_ASSOC))
+						{
 						?>
 						<tr id="<?php echo $i;?>" data-pip="<?php echo $fila['idpip']; ?>" data-personal="<?php echo $_SESSION['personal'];?>" >
 							<td scope="row"><?php echo $i; ?></td>
@@ -81,44 +80,47 @@ $numtotal = $data->num_rows;
   <?php include_once("footer.php"); ?>
 
   <script type="text/javascript">
-	$(document).ready(function () {
-		let total = document.getElementById('numtotal').value;
+		$(document).ready(function () {
+			let total = document.getElementById('numtotal').value;
 
-		$.ajax({
-			url: 'combo.php',
-			success: function(response)
-			{
-				for (var i = 1; i<total;i++)
+			$.ajax({
+				url: 'combo.php',
+				success: function(response)
 				{
-					$("#combo"+i).html(response);
+					for (var i = 1; i<total;i++)
+					{
+						$("#combo"+i).html(response);
+					}
+				},
+				error: function() {
+					alert('Error');
 				}
-			},
-			error: function() {
-				alert('Error');
-			}
+			});
+
+			$("td").on("click", function()
+			{
+				// guardar el valor del data-id en el localstorage
+				//var idpersonal = document.getElementById("idpersonal");
+				//var webcard = document.getElementById("2");
+				// En la propiedad dataset del elemento estarán todos los atributos data-*
+				//var strWeb = webcard.dataset.pip; //Resultado: Estrada Web Group
+				//var strPer = webcard.dataset.personal; //Resultado: Estrada Web Group
+
+				alert("data-index: ");
+				//localStorage.setItem("data-id", $(this).attr("data-id"));
+			});
+
 		});
 
-		$(document).on('change', '#idpersonal', function(event) {
+		$(document).on('change', '#idpersonal', function(event)
+		{
 			
 		    $('#servicioSelecionado').val($("#idpersonal option:selected").val());
-			var uno = $("#idpersonal option:selected").val();
-			alert(uno);
+				var uno = $("#idpersonal option:selected").val();
+				alert(uno);
 		});
-
-		
-
 
 		// cuando se pulsa un enlace con data-id
-		$("tr").on("click", function() {
-			// guardar el valor del data-id en el localstorage
-			//var idpersonal = document.getElementById("idpersonal");
-			//var webcard = document.getElementById("2");
-			// En la propiedad dataset del elemento estarán todos los atributos data-*
-			//var strWeb = webcard.dataset.pip; //Resultado: Estrada Web Group
-			//var strPer = webcard.dataset.personal; //Resultado: Estrada Web Group
-						
-			alert("data-index: ");
-			//localStorage.setItem("data-id", $(this).attr("data-id"));
-		});
-	});
+
+
   </script>
